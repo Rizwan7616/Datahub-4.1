@@ -16,8 +16,8 @@ if ($conn->connect_error) {
     echo "$conn->connect_error";
     die("Connection Failed : " . $conn->connect_error);
 } else {
-    $stmt = $conn->prepare("insert into notice_review(title, content, posted_by, priority_level) values(?, ?, ?, ?)");
-    $stmt->bind_param("ssis", $title, $content, $posted_by, $priority_level);
+    $stmt = $conn->prepare("insert into notice_board(title, content, posted_by, priority_level) values(?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $title, $content, $posted_by, $priority_level);
     $execval = $stmt->execute();
     echo $execval;
     echo "Data sent sucessfully";
