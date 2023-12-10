@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css" />
 
-    <link rel="stylesheet" href="homepage.css" />
+    <link rel="stylesheet" href="style.css" />
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 
@@ -387,6 +387,77 @@
                         </tbody>
             </table>
         </div>
+
+
+
+
+        <div class="table_to_edit">
+            <table class="table table table-striped table-hover">
+                <h3> Contact database</h3>
+                <?php
+                include 'db.php';
+
+                $sql = "SELECT contact_id, name, num, subject,message FROM  contact";
+                $query = mysqli_query($conn, $sql);
+
+                if (mysqli_num_rows($query) > 0) {
+                ?>
+
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Num</th>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Message</th>
+
+
+                        </tr>
+                    </thead>
+                    <?php
+                    $i = 1;
+                    while ($info = mysqli_fetch_array($query)) {
+                        $notice_id = $info['contact_id'];
+                        $project_title = $info['name'];
+                        $mentor_id = $info['num'];
+                        $student_id1 = $info['subject'];
+                        $student_id2 = $info['message'];
+
+
+                    ?>
+                        <tbody>
+                            <tr>
+                                <th scope="row"><?= $i++ ?></th>
+                                <td><?= $notice_id ?></td>
+                                <td><?= $project_title ?></td>
+                                <td><?= $mentor_id ?></td>
+                                <td><?= $student_id1 ?></td>
+                                <td><?= $student_id2 ?></td>
+
+                            </tr>
+                        <?php
+                    }
+                } else {
+                        ?>
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Num</th>
+                                <th scope="col">Subject</th>
+                                <th scope="col">Message</th>
+                            </tr>
+                        </thead>
+                    <?php
+                }
+                    ?>
+
+                        </tbody>
+            </table>
+        </div>
+
 
 
 
